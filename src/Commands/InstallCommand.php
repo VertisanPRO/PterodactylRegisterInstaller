@@ -21,8 +21,6 @@ class InstallCommand extends Command
             return $this->fail('You already have the Register Module installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
         }
 
-        $this->info(__DIR__);
-
         $this->info('Starting the installation of the Register Module');
 
         $res = $client->get('https://raw.githubusercontent.com/pterodactyl/panel/v1.11.3/resources/scripts/components/auth/LoginContainer.tsx');
@@ -34,9 +32,9 @@ class InstallCommand extends Command
 
         $this->info('Settings permissions');
         exec('chmod --silent -R 755 storage/* bootstrap/cache 2>/dev/null');
-        exec('chown --silent -R www-data:www-data * 2>/dev/null');
-        exec('chown --silent -R nginx:nginx * 2>/dev/null');
-        exec('chown --silent -R apache:apache * 2>/dev/null');
+        exec('chown --silent -R www-data:www-data ' . base_path() . '/* 2>/dev/null');
+        exec('chown --silent -R nginx:nginx ' . base_path() . '/* 2>/dev/null');
+        exec('chown --silent -R apache:apache ' . base_path() . '/* 2>/dev/null');
 
         $this->info('Clearing cache');
         exec('php artisan optimize');
