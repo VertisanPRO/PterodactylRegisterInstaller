@@ -40,7 +40,7 @@ class InstallCommand extends Command
             return 0;
         }
 
-        if (!in_array('Validating package.json', $output)) {
+        if (!strpos($output[1], 'Validating package.json')) {
             $this->error('Could not install the Register Module. Detected cmdtest package installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
             return 0;
         }
