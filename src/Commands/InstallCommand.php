@@ -20,7 +20,7 @@ class InstallCommand extends Command
             return 0;
         }
 
-        exec('curl -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/RegisterModule.tar.gz | tar -xzv 2>/dev/null');
+        exec('curl -s -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/RegisterModule.tar.gz | tar -xzv');
 
         exec('chmod -R 755 storage/* bootstrap/cache 2>/dev/null');
         exec('chown -R www-data:www-data * 2>/dev/null');
