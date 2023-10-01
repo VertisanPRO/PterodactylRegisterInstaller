@@ -16,6 +16,11 @@
     "config": {
         "sort-packages": true
     },
+    "autoload": {
+        "psr-4": {
+            "Wemx\\PterodactylRegister\\": "src"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
