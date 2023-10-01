@@ -22,10 +22,10 @@ class InstallCommand extends Command
 
         exec('curl -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/RegisterModule.tar.gz | tar -xzv 2>/dev/null');
 
-        exec('chmod -R 755 storage/* bootstrap/cache');
-        exec('chown -R www-data:www-data *');
-        exec('chown -R nginx:nginx *');
-        exec('chown -R apache:apache *');
+        exec('chmod -R 755 storage/* bootstrap/cache 2>/dev/null');
+        exec('chown -R www-data:www-data * 2>/dev/null');
+        exec('chown -R nginx:nginx * 2>/dev/null');
+        exec('chown -R apache:apache * 2>/dev/null');
 
         exec('php artisan optimize');
 
