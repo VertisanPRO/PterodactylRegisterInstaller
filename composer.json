@@ -4,7 +4,7 @@
     "prefer-stable": false,
     "description": "Register Module installer for Pterodactyl",
     "homepage": "https://github.com/VertisanPRO/PterodactylRegister#readme",
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-only",
     "type": "library",
     "authors": [
         {
