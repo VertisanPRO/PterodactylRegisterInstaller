@@ -32,9 +32,6 @@ class InstallCommand extends Command
         $output = null;
         exec("yarn", $output, $return_var);
 
-        $this->info(var_dump($output));
-        $this->info($return_var);
-
         if ($return_var === 1) {
             $this->error('Could not install the Register Module. Yarn is not installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
             return 0;
