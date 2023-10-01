@@ -27,7 +27,7 @@ class InstallCommand extends Command
         $output = null;
         exec("yarn", $output, $return_var);
 
-        $this->info($output);
+        $this->info(var_dump($output));
         $this->info($return_var);
 
         if ($return_var === 1) {
