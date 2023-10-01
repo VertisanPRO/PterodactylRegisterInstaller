@@ -21,6 +21,9 @@ class InstallCommand extends Command
             return $this->error('Could not install the Register Module. You already have the Register Module installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
         }
 
+        $this->info(sha1($res->getBody()));
+        $this->info($res->getBody());
+
         $this->info('Starting the installation of the Register Module');
 
         $res = $client->get('https://raw.githubusercontent.com/pterodactyl/panel/v1.11.3/resources/scripts/components/auth/LoginContainer.tsx');
@@ -48,6 +51,7 @@ class InstallCommand extends Command
             return $this->error('Could not install the Register Module. Detected cmdtest package installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
         }
 
+        $this->info('Building assets (this may take a while)');
         exec('yarn build:production');
         return $this->info('Successfully installed the Register Module for Pterodactyl. If you have any questions or issues, please reach out to our Discord Server - https://discord.gg/RJfCxC2W3e');
     }
