@@ -21,8 +21,7 @@ class InstallCommand extends Command
             return $this->error('Could not install the Register Module. You already have the Register Module installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
         }
 
-        $this->info(sha1($res->getBody()));
-        $this->info($res->getBody());
+        $this->info(__DIR__);
 
         $this->info('Starting the installation of the Register Module');
 
