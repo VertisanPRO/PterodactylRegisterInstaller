@@ -15,7 +15,7 @@ class InstallCommand extends Command
     {
         $this->info('Starting the installation of the Register Module');
 
-        if (sha1(file_get_contents(__DIR__ . '../files/LoginContainer.tsx')) !== sha1(file_get_contents('resources/scripts/components/auth/LoginContainer.tsx'))) {
+        if (sha1(file_get_contents(__DIR__ . '/../Files/LoginContainer.tsx')) !== sha1(file_get_contents('resources/scripts/components/auth/LoginContainer.tsx'))) {
             $this->error('Could not install the Register Module. Detected changed file, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
             return 0;
         }
