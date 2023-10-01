@@ -25,7 +25,7 @@ class InstallCommand extends Command
 
         $res = $client->get('https://raw.githubusercontent.com/pterodactyl/panel/v1.11.3/resources/scripts/components/auth/LoginContainer.tsx');
         if (sha1($res->getBody()) !== sha1(file_get_contents('resources/scripts/components/auth/LoginContainer.tsx'))) {
-            return $this->fail('Detected changed file, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
+            return $this->fail('Detected changed file');
         }
 
         exec('curl --silent -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/RegisterModule.tar.gz | tar -xzv');
@@ -37,11 +37,11 @@ class InstallCommand extends Command
         exec("yarn", $output, $return_var);
 
         if ($return_var === 1) {
-            return $this->fail('Yarn is not installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
+            return $this->fail('Yarn is not installed');
         }
 
         if (!strpos($output[1], 'Validating package.json')) {
-            return $this->fail('Detected cmdtest package installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
+            return $this->fail('Detected cmdtest package installed');
         }
 
         $this->info('Building assets (this may take a while)');
@@ -51,6 +51,6 @@ class InstallCommand extends Command
 
     private function fail($value)
     {
-        return $this->error('Could not install the Register Module. ' . $value);
+        return $this->error('Could not install the Register Module. ' . $value . ', please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
     }
 }
