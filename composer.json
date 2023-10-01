@@ -1,7 +1,7 @@
 {
     "name": "wemx/pterodactylregister",
-    "minimum-stability": "dev",
-    "prefer-stable": false,
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "description": "Register Module installer for Pterodactyl",
     "homepage": "https://github.com/VertisanPRO/PterodactylRegister#readme",
     "license": "GPL-3.0-only",
