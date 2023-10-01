@@ -1,0 +1,26 @@
+{
+    "name": "wemx/pterodactylregister",
+    "minimum-stability": "dev",
+    "prefer-stable": false,
+    "description": "Register Module installer for Pterodactyl",
+    "homepage": "https://github.com/VertisanPRO/PterodactylRegister#readme",
+    "license": "GPL-3.0",
+    "type": "library",
+    "authors": [
+        {
+            "name": "PadowYT2",
+            "email": "me@padow.ru",
+            "role": "Developer"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wemx\\PterodactylRegister\\CommandsServiceProvider"
+            ]
+        }
+    }
+}
