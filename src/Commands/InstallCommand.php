@@ -3,6 +3,7 @@
 namespace Wemx\PterodactylRegister\Commands;
 
 use Illuminate\Console\Command;
+use GuzzleHttp\Client;
 
 class InstallCommand extends Command
 {
@@ -13,19 +14,26 @@ class InstallCommand extends Command
 
     public function handle()
     {
-        $this->info('Starting the installation of the Register Module');
+        $client = new Client();
 
-        if (sha1(file_get_contents(__DIR__ . '/../Files/LoginContainer.tsx')) !== sha1(file_get_contents('resources/scripts/components/auth/LoginContainer.tsx'))) {
-            $this->error('Could not install the Register Module. Detected changed file, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
-            return 0;
+        $res = $client->get('https://raw.githubusercontent.com/VertisanPRO/PterodactylRegister/main/resources/scripts/components/auth/LoginContainer.tsx');
+        if (sha1($res->getBody()) !== sha1(file_get_contents('resources/scripts/components/auth/LoginContainer.tsx'))) {
+            return $this->error('Could not install the Register Module. You already have the Register Module installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
         }
 
-        exec('curl -s -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/RegisterModule.tar.gz | tar -xzv');
+        $this->info('Starting the installation of the Register Module');
 
-        exec('chmod -R 755 storage/* bootstrap/cache 2>/dev/null');
-        exec('chown -R www-data:www-data * 2>/dev/null');
-        exec('chown -R nginx:nginx * 2>/dev/null');
-        exec('chown -R apache:apache * 2>/dev/null');
+        $res = $client->get('https://raw.githubusercontent.com/pterodactyl/panel/v1.11.3/resources/scripts/components/auth/LoginContainer.tsx');
+        if (sha1($res->getBody()) !== sha1(file_get_contents('resources/scripts/components/auth/LoginContainer.tsx'))) {
+            return $this->error('Could not install the Register Module. Detected changed file, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
+        }
+
+        exec('curl --silent -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/RegisterModule.tar.gz | tar -xzv');
+
+        exec('chmod --silent -R 755 storage/* bootstrap/cache 2>/dev/null');
+        exec('chown --silent -R www-data:www-data * 2>/dev/null');
+        exec('chown --silent -R nginx:nginx * 2>/dev/null');
+        exec('chown --silent -R apache:apache * 2>/dev/null');
 
         exec('php artisan optimize');
 
@@ -33,13 +41,11 @@ class InstallCommand extends Command
         exec("yarn", $output, $return_var);
 
         if ($return_var === 1) {
-            $this->error('Could not install the Register Module. Yarn is not installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
-            return 0;
+            return $this->error('Could not install the Register Module. Yarn is not installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
         }
 
         if (!strpos($output[1], 'Validating package.json')) {
-            $this->error('Could not install the Register Module. Detected cmdtest package installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
-            return 0;
+            return $this->error('Could not install the Register Module. Detected cmdtest package installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
         }
 
         exec('yarn build:production');
