@@ -33,12 +33,6 @@ class InstallCommand extends Command
         $this->info('Clearing cache');
         exec('php artisan optimize');
 
-        $this->info('Settings permissions');
-        exec('chmod --silent -R 755 storage/* bootstrap/cache');
-        exec('chown --silent -R www-data:www-data ' . base_path() . '/*');
-        exec('chown --silent -R nginx:nginx ' . base_path() . '/*');
-        exec('chown --silent -R apache:apache ' . base_path() . '/*');
-
         $output = null;
         exec("yarn", $output, $return_var);
 
