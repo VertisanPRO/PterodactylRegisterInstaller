@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class InstallCommand extends Command
 {
 
-    protected $signature = 'register install';
+    protected $signature = 'register:install';
 
     protected $description = 'Install the Register Module for Pterodactyl';
 
