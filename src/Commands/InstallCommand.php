@@ -30,14 +30,14 @@ class InstallCommand extends Command
 
         exec('curl --silent -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/RegisterModule.tar.gz | tar -xzv');
 
-        $this->info('Settings permissions');
-        exec('chmod --silent -R 755 storage/* bootstrap/cache 2>/dev/null');
-        exec('chown --silent -R www-data:www-data ' . base_path() . '/* 2>/dev/null');
-        exec('chown --silent -R nginx:nginx ' . base_path() . '/* 2>/dev/null');
-        exec('chown --silent -R apache:apache ' . base_path() . '/* 2>/dev/null');
-
         $this->info('Clearing cache');
         exec('php artisan optimize');
+
+        $this->info('Settings permissions');
+        exec('chmod --silent -R 755 storage/* bootstrap/cache');
+        exec('chown --silent -R www-data:www-data ' . base_path() . '/*');
+        exec('chown --silent -R nginx:nginx ' . base_path() . '/*');
+        exec('chown --silent -R apache:apache ' . base_path() . '/*');
 
         $output = null;
         exec("yarn", $output, $return_var);
