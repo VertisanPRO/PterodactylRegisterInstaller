@@ -16,7 +16,7 @@ class InstallCommand extends Command
     {
         $client = new Client();
 
-        $res = $client->get('https://raw.githubusercontent.com/VertisanPRO/PterodactylRegister/main/resources/scripts/components/auth/LoginContainer.tsx');
+        $res = $client->get('https://raw.githubusercontent.com/VertisanPRO/PterodactylRegister/LoginContainer/resources/scripts/components/auth/LoginContainer.tsx');
         if (sha1($res->getBody()) == sha1(file_get_contents('resources/scripts/components/auth/LoginContainer.tsx'))) {
             return $this->fail('You already have the Register Module installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
         }
@@ -29,6 +29,7 @@ class InstallCommand extends Command
         }
 
         exec('curl --silent -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/RegisterModule.tar.gz | tar -xzv');
+        exec('curl --silent -L https://github.com/VertisanPRO/PterodactylRegister/releases/latest/download/LoginContainer.tar.gz | tar -xzv');
 
         $this->info('Clearing cache');
         exec('php artisan optimize');
