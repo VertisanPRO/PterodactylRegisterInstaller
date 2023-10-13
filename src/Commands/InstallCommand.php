@@ -18,7 +18,7 @@ class InstallCommand extends Command
 
         $res = $client->get('https://raw.githubusercontent.com/VertisanPRO/PterodactylRegister/LoginContainer/resources/scripts/components/auth/LoginContainer.tsx');
         if (sha1($res->getBody()) == sha1(file_get_contents('resources/scripts/components/auth/LoginContainer.tsx'))) {
-            return $this->fail('You already have the Register Module installed, please refer to our Discord Server for help - https://discord.gg/RJfCxC2W3e');
+            return $this->fail('You already have the Register Module installed');
         }
 
         $this->info('Starting the installation of the Register Module');
