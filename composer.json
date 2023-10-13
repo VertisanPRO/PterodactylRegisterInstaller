@@ -13,9 +13,6 @@
             "role": "Developer"
         }
     ],
-    "require": {
-        "laravel/prompts": "*"
-    },
     "config": {
         "sort-packages": true
     },
