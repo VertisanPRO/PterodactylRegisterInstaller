@@ -7,9 +7,6 @@ use Wemx\PterodactylRegister\Commands\InstallCommand;
 
 class CommandsServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
     public function boot()
     {
         $this->commands([
