@@ -13,8 +13,13 @@
             "role": "Developer"
         }
     ],
-    "config": {
-        "sort-packages": true
+    "require": {
+        "wemx/utils": "*",
+        "laravel/prompts": "*"
+    },
+    "require-dev": {
+        "laravel/framework": "~10.1.3",
+        "guzzlehttp/guzzle": "~7.5.0"
     },
     "autoload": {
         "psr-4": {
